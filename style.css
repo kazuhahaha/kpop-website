@@ -1,1 +1,30 @@
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  background: #f9f9f9;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
 
+header {
+  background: #ff4da6;
+  color: white;
+  padding: 20px;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+iframe {
+  margin: 20px auto;
+  display: block;
+  border-radius: 10px;
+}
