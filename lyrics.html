@@ -1,1 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>歌詞專區 - K-pop 音樂站</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lyrics-box {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .lyrics-box h2 {
+      color: #ff4da6;
+      margin-bottom: 15px;
+    }
+    .lyrics-content {
+      display: flex;
+      gap: 20px;
+    }
+    .lyrics-col {
+      width: 48%;
+    }
+    .lyrics-col pre {
+      white-space: pre-wrap;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    select {
+      margin: 10px 0 20px 0;
+      padding: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎤 歌詞專區</h1>
+    <nav>
+      <a href="index.html">首頁</a>
+      <a href="songs.html">推薦歌曲</a>
+      <a href="idols.html">偶像介紹</a>
+      <a href="lyrics.html">歌詞專區</a>
+      <a href="fans.html">粉絲互動</a>
+      <a href="about.html">關於我們</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="lyrics-box">
+      <h2>選擇歌曲</h2>
+      <select id="songSelect" onchange="showLyrics()">
+        <option value="">請選擇</option>
+        <option value="fearless">LE SSERAFIM - FEARLESS</option>
+        <option value="nextlevel">aespa - Next Level</option>
+        <option value="hypeboy">NewJeans - Hype Boy</option>
+      </select>
+
+      <div id="lyricsArea"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 K-pop 專題小組</p>
+  </footer>
+
+  <script>
+    const lyricsData = {
+      fearless: {
+        kr: `두려움은 없어
+난 새로운 나로
+꿈을 꿔 (Dreaming)
+I'm fearless huh`,
+        zh: `我沒有恐懼
+成為嶄新的自己
+做著夢 (Dreaming)
+我無所畏懼 huh`
+      },
+      nextlevel: {
+        kr: `I'm on the Next Level
+저 너머의 문을 열어
+Next Level
+널 결국엔 내가 부셔`,
+        zh: `我在下一個等級
+打開那彼方的大門
+下一個等級
+最終我會擊碎你`
+      },
+      hypeboy: {
+        kr: `Cause I know what you like boy
+You're my chemical hype boy
+내 지난날들은
+눈 뜨면 잊는 꿈`,
+        zh: `因為我知道你喜歡什麼
+你是我的化學反應 hype boy
+過去的那些日子
+醒來就忘掉的夢`
+      }
+    };
+
+    function showLyrics() {
+      const select = document.getElementById("songSelect");
+      const choice = select.value;
+      const lyricsArea = document.getElementById("lyricsArea");
+
+      if (!choice) {
+        lyricsArea.innerHTML = "";
+        return;
+      }
+
+      const song = lyricsData[choice];
+      lyricsArea.innerHTML = `
+        <div class="lyrics-content">
+          <div class="lyrics-col">
+            <h3>韓文</h3>
+            <pre>${song.kr}</pre>
+          </div>
+          <div class="lyrics-col">
+            <h3>中文翻譯</h3>
+            <pre>${song.zh}</pre>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
 
