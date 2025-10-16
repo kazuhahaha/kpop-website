@@ -28,3 +28,17 @@ iframe {
   display: block;
   border-radius: 10px;
 }
+.video-box {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.video-box iframe {
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 80%;
+  max-width: 800px;
+  height: 450px;
+}
+
