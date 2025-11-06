@@ -40,5 +40,77 @@ iframe {
   width: 80%;
   max-width: 800px;
   height: 450px;
+
+  body.desktop {
+  margin: 0;
+  background: #0d0d0d;
+  color: #fff;
+  font-family: "Noto Sans TC", sans-serif;
 }
+
+.top {
+  background: #111;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr 300px;
+}
+
+.sidebar {
+  background: #111;
+  height: 100vh;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-right: 1px solid #333;
+}
+
+.sidebar a {
+  color: #00FFC8;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.sidebar a:hover {
+  background: #00FFC8;
+  color: #000;
+}
+
+.feed {
+  padding: 20px;
+}
+
+.post {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.post img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.right-panel {
+  background: #111;
+  padding: 20px;
+  border-left: 1px solid #333;
+}
+
+.right-panel h3 {
+  color: #00FFC8;
+  margin-top: 10px;
+}
+
+  
+
 
