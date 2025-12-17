@@ -4,118 +4,167 @@
   <meta charset="UTF-8">
   <title>偶像介紹 - K-pop 音樂站</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background: #f5f7fb;
+    }
+
+    .idol-card {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    .idol-header {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .idol-header img {
+      width: 320px;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .idol-info h2 {
+      margin-top: 0;
+      color: #4f6ef7;
+    }
+
+    .idol-info p {
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .idol-content {
+      margin-top: 25px;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+      line-height: 1.8;
+    }
+  </style>
 </head>
+
 <body>
-  <header>
-    <h1>🌟 偶像介紹</h1>
-    <nav>
-      <a href="index.html">首頁</a>
-      <a href="songs.html">推薦歌曲</a>
-      <a href="idols.html">偶像介紹</a>
-    </nav>
-  </header>
 
-  <main>
-    <!-- LE SSERAFIM -->
-    <section class="idol">
-      <h2>LE SSERAFIM</h2>
-      <img src=" ef62ee6f-343a-4203-8e5e-dfb70fa1f471.jpeg" alt="LE SSERAFIM 團體照" width="400">
-      <p>
-       LE SSERAFIM （韓語：르세라핌；日語：ルセラフィム）是韓國SOURCE MUSIC於2022年推出的多國籍女子音樂團體，
-        成員為韓國籍金采源、洪恩採、美韓雙籍許允眞、日本籍宮脇咲良和中村一葉，
-        由金采源擔任隊長，於2022年5月2日以迷你專輯《FEARLESS》出道。
-        她們以「不被任何恐懼阻擋」為團名寓意，展現強烈自信與舞台魅力。
-      </p>
-      <h3>代表作品</h3>
-      <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/pyf8cbqyfPs" 
-        frameborder="0" allowfullscreen></iframe>
+<header>
+  <h1>🌟 偶像介紹</h1>
+  <nav>
+    <a href="index.html">首頁</a>
+    <a href="songs.html">推薦歌曲</a>
+    <a href="idols.html">偶像介紹</a>
+  </nav>
+</header>
 
-      <h3>歷年歌曲</h3>
+<main>
+
+  <!-- LE SSERAFIM -->
+  <section class="idol-card">
+    <div class="idol-header">
+      <img src="ef62ee6f-343a-4203-8e5e-dfb70fa1f471.jpeg" alt="LE SSERAFIM">
+      <div class="idol-info">
+        <h2>LE SSERAFIM</h2>
+        <p>
+          LE SSERAFIM（르세라핌）是 SOURCE MUSIC 於 2022 年推出的多國籍女子團體，
+          成員包含金采源、洪恩採、許允眞、宮脇咲良、中村一葉，
+          團名寓意「不被任何恐懼阻擋」，展現自信與力量。
+        </p>
+      </div>
+    </div>
+
+    <div class="idol-content">
+      <h3>🎬 代表作品</h3>
+      <iframe src="https://www.youtube.com/embed/pyf8cbqyfPs" allowfullscreen></iframe>
+
+      <h3>🎵 歷年歌曲</h3>
       <ul>
         <li>2022 - FEARLESS</li>
         <li>2022 - ANTIFRAGILE</li>
-        <li>2023 - UNFORGIVEN (feat. Nile Rodgers)</li>
+        <li>2023 - UNFORGIVEN</li>
         <li>2023 - Eve, Psyche & The Bluebeard’s wife</li>
-        <li>2024 - PREFECT NIGHT</li>
-        <li>2024 - EASY</li>
-        <li>2024 - CRAZY</li>
+        <li>2024 - PERFECT NIGHT / EASY / CRAZY</li>
         <li>2025 - HOT</li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <!-- aespa -->
-    <section class="idol">
-      <h2>aespa</h2>
-      <img src="images/aespa.jpg" alt="aespa 團體照" width="400">
-      <p>
-aespa 是SM 娛樂於2020 年推出的四人女子團體，成員包括Karina、Giselle、Winter 和Ningning。
-她們的團名結合了「化身」(avatar) 和「經歷」(experience) 的首字母「ae」，以及「雙面」(aspect) 的含義，
-象徵著她們與虛擬世界中的化身角色共同體驗全新世界的概念。 她們的獨特之處在於「元宇宙」世界觀，每位成員都有對應的虛擬化身「æ」。 
-成員介紹
-Karina：: 韓國籍，隊長。
-Giselle：: 日本籍，饒舌擔當。
-Winter：: 韓國籍，主唱與副舞。
-Ningning：: 中國籍，成員之一。 
-團體特色
-元宇宙概念： aespa 擁有獨特的元宇宙世界觀，每位成員都有對應的虛擬化身「æ」，並在出道曲〈Black Mamba〉等歌曲的MV 中有所體現。 
-團名與粉絲名稱： 團名結合「ae」和「aspect」，意為「化身與經歷的雙面」。 粉絲名稱是「MY」，在虛擬世界「Kwangya」中意為「最珍貴的朋友」。 
-出道與成就： 於2020 年以單曲〈Black Mamba〉正式出道。 出道後便展現出強大的歌唱及舞蹈實力，並獲得多項新人獎項。 
-主要活動
-出道：: 2020 年11 月17 日，以數位單曲《Black Mamba》出道。
-首次單獨演唱會：: 2023 年2 月在首爾舉辦了首次演唱會。
-海外活動：: 2022 年登上美國Coachella 音樂節。
-日語出道：: 2024 年7 月在日本正式出道。 
-      <h3>代表作品</h3>
-      <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/Q-1MPME8NAQ" 
-        frameborder="0" allowfullscreen></iframe>
+  <!-- aespa -->
+  <section class="idol-card">
+    <div class="idol-header">
+      <img src="images/aespa.jpg" alt="aespa">
+      <div class="idol-info">
+        <h2>aespa</h2>
+        <p>
+          aespa 是 SM 娛樂於 2020 年推出的四人女團，
+          以獨特的「元宇宙世界觀」聞名，
+          成員包括 Karina、Giselle、Winter、Ningning。
+        </p>
+      </div>
+    </div>
 
-      <h3>歷年歌曲</h3>
+    <div class="idol-content">
+      <h3>🎬 代表作品</h3>
+      <iframe src="https://www.youtube.com/embed/Q-1MPME8NAQ" allowfullscreen></iframe>
+
+      <h3>🎵 歷年歌曲</h3>
       <ul>
         <li>2020 - Black Mamba</li>
-        <li>2021 - Next Level</li>
-        <li>2021 - Savage</li>
+        <li>2021 - Next Level / Savage</li>
         <li>2022 - Girls</li>
-        <li>2023 - Spicy</li>
-        <li>2023 - Drama</li>
-        <li>2024 - Supernova</li>
-       <li>2024 - Whiplash</li>
-       <li>2025 - Dirty Work</li>
-        <li>2025 -Rich Man</li>
+        <li>2023 - Spicy / Drama</li>
+        <li>2024 - Supernova / Whiplash</li>
+        <li>2025 - Dirty Work / Rich Man</li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <!-- NewJeans -->
-    <section class="idol">
-      <h2>NewJeans</h2>
-      <img src="images/newjeans.jpg" alt="NewJeans 團體照" width="400">
-      <p>
-        NewJeans 是 ADOR 於 2022 年推出的五人女子團體，
-        成員包括 Minji、Hanni、Danielle、Haerin、Hyein。
-        她們以清新自然的音樂風格、洗腦旋律與舞蹈迅速走紅，
-        並成為新世代 K-pop 的代表。
-      </p>
-      <h3>代表作品</h3>
-      <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/js1CtxSY38I" 
-        frameborder="0" allowfullscreen></iframe>
+  <!-- NewJeans -->
+  <section class="idol-card">
+    <div class="idol-header">
+      <img src="images/newjeans.jpg" alt="NewJeans">
+      <div class="idol-info">
+        <h2>NewJeans</h2>
+        <p>
+          NewJeans 是 ADOR 於 2022 年推出的五人女子團體，
+          以自然清新的音樂風格與潮流感，
+          成為新世代 K-pop 的代表。
+        </p>
+      </div>
+    </div>
 
-      <h3>歷年歌曲</h3>
+    <div class="idol-content">
+      <h3>🎬 代表作品</h3>
+      <iframe src="https://www.youtube.com/embed/js1CtxSY38I" allowfullscreen></iframe>
+
+      <h3>🎵 歷年歌曲</h3>
       <ul>
-        <li>2022 - Attention</li>
-        <li>2022 - Hype Boy</li>
-        <li>2022 - Cookie</li>
-        <li>2023 - Ditto</li>
-        <li>2023 - OMG</li>
-        <li>2023 - Super Shy</li>
-        <li>2023 - ETA</li>
+        <li>2022 - Attention / Hype Boy / Cookie</li>
+        <li>2023 - Ditto / OMG / Super Shy / ETA</li>
       </ul>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2025 K-pop 專題小組</p>
-  </footer>
+</main>
+
+<footer>
+  <p>© 2025 K-pop 專題小組</p>
+</footer>
+
 </body>
 </html>
