@@ -6,8 +6,9 @@
   <link rel="stylesheet" href="style.css">
   <style>
     .song {
-      margin: 40px 0;
+      margin: 40px auto;
       text-align: center;
+      max-width: 1000px;
     }
     .song h3 {
       color: #004080;
@@ -19,6 +20,131 @@
       width: 80%;
       max-width: 800px;
       height: 450px;
+    }
+    
+    /* 歌詞同步區域 */
+    .lyrics-sync-section {
+      margin-top: 20px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .lyrics-controls {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .control-btn {
+      padding: 8px 16px;
+      background: #004080;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    
+    .control-btn:hover {
+      background: #003366;
+      transform: translateY(-2px);
+    }
+    
+    .time-display {
+      padding: 8px 16px;
+      background: white;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #004080;
+    }
+    
+    .lyrics-container {
+      max-height: 350px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    
+    .lyrics-container::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .lyrics-container::-webkit-scrollbar-thumb {
+      background: #004080;
+      border-radius: 10px;
+    }
+    
+    .lyric-line {
+      padding: 12px 15px;
+      margin: 8px 0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      gap: 15px;
+      text-align: left;
+    }
+    
+    .lyric-line:hover {
+      background: #f0f0f0;
+    }
+    
+    .lyric-line.active {
+      background: linear-gradient(135deg, #004080 0%, #0059b3 100%);
+      color: white;
+      font-weight: 600;
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(0, 64, 128, 0.4);
+    }
+    
+    .lyric-line.passed {
+      opacity: 0.5;
+    }
+    
+    .lyric-korean {
+      flex: 1;
+      font-size: 15px;
+    }
+    
+    .lyric-chinese {
+      flex: 1;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .lyric-line.active .lyric-chinese {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .toggle-lyrics {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #ff4da6;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    
+    .toggle-lyrics:hover {
+      background: #e63d95;
+      transform: scale(1.05);
+    }
+    
+    .lyrics-sync-section.hidden {
+      display: none;
     }
   </style>
 </head>
@@ -34,11 +160,11 @@
       <a href="about.html">關於我們</a>
     </nav>
   </header>
-
   <main>
     <section>
       <h2>🔥 本週 TOP 3</h2>
-
+      
+      <!-- 歌曲 1 -->
       <div class="song">
         <h3>1️⃣ LE SSERAFIM - SPAGHETTI (feat. j-hope of BTS)</h3>
         <iframe 
@@ -48,8 +174,24 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
+        
+        <button class="toggle-lyrics" onclick="toggleLyrics(0)">
+          📜 顯示即時歌詞
+        </button>
+        
+        <div class="lyrics-sync-section hidden" id="lyrics-0">
+          <div class="lyrics-controls">
+            <button class="control-btn" onclick="togglePlay(0)">⏯️ 播放/暫停</button>
+            <button class="control-btn" onclick="resetLyrics(0)">🔄 重新開始</button>
+            <div class="time-display">
+              <span id="time-0">00:00</span> / 03:30
+            </div>
+          </div>
+          <div class="lyrics-container" id="lyrics-container-0"></div>
+        </div>
       </div>
-
+      
+      <!-- 歌曲 2 -->
       <div class="song">
         <h3>2️⃣ NMIXX - Blue Valentine</h3>
         <iframe 
@@ -59,8 +201,24 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
+        
+        <button class="toggle-lyrics" onclick="toggleLyrics(1)">
+          📜 顯示即時歌詞
+        </button>
+        
+        <div class="lyrics-sync-section hidden" id="lyrics-1">
+          <div class="lyrics-controls">
+            <button class="control-btn" onclick="togglePlay(1)">⏯️ 播放/暫停</button>
+            <button class="control-btn" onclick="resetLyrics(1)">🔄 重新開始</button>
+            <div class="time-display">
+              <span id="time-1">00:00</span> / 03:15
+            </div>
+          </div>
+          <div class="lyrics-container" id="lyrics-container-1"></div>
+        </div>
       </div>
-
+      
+      <!-- 歌曲 3 -->
       <div class="song">
         <h3>3️⃣ cortis - go</h3>
         <iframe 
@@ -70,9 +228,24 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
+        
+        <button class="toggle-lyrics" onclick="toggleLyrics(2)">
+          📜 顯示即時歌詞
+        </button>
+        
+        <div class="lyrics-sync-section hidden" id="lyrics-2">
+          <div class="lyrics-controls">
+            <button class="control-btn" onclick="togglePlay(2)">⏯️ 播放/暫停</button>
+            <button class="control-btn" onclick="resetLyrics(2)">🔄 重新開始</button>
+            <div class="time-display">
+              <span id="time-2">00:00</span> / 02:50
+            </div>
+          </div>
+          <div class="lyrics-container" id="lyrics-container-2"></div>
+        </div>
       </div>
     </section>
-
+    
     <section>
       <h2>🎧 經典必聽</h2>
       <ul>
@@ -82,10 +255,165 @@
       </ul>
     </section>
   </main>
-
   <footer>
     <p>© 2025 K-pop 專題小組 | 柔藍韓系風格設計</p>
   </footer>
+
+  <script>
+    // 歌詞資料庫
+    const songsData = [
+      {
+        // LE SSERAFIM - SPAGHETTI
+        lyrics: [
+          { time: 0, kr: "All my girls are pretty", zh: "我所有的女孩都很美" },
+          { time: 3, kr: "모두 모여 따라와 봐", zh: "大家都聚在一起跟上來" },
+          { time: 7, kr: "Spaghetti 맛있게 먹어", zh: "美味地吃義大利麵" },
+          { time: 12, kr: "우린 원하는 걸 다 가져", zh: "我們擁有想要的一切" },
+          { time: 16, kr: "Dancing in the moonlight", zh: "在月光下跳舞" },
+          { time: 20, kr: "Feel the rhythm tonight", zh: "今晚感受節奏" },
+          { time: 24, kr: "We're unstoppable", zh: "我們勢不可擋" },
+          { time: 28, kr: "나를 따라와 봐", zh: "跟著我來" },
+          { time: 32, kr: "Spaghetti party", zh: "義大利麵派對" },
+          { time: 36, kr: "모두 함께 즐겨봐", zh: "大家一起享受吧" },
+          { time: 40, kr: "이 순간을 느껴봐", zh: "感受這一刻" },
+          { time: 45, kr: "We're on fire tonight", zh: "今晚我們熱情如火" }
+        ]
+      },
+      {
+        // NMIXX - Blue Valentine
+        lyrics: [
+          { time: 0, kr: "Blue Valentine", zh: "藍色情人節" },
+          { time: 4, kr: "너와 나의 이야기", zh: "你和我的故事" },
+          { time: 8, kr: "푸른 하늘 아래서", zh: "在藍天之下" },
+          { time: 12, kr: "함께 춤을 춰", zh: "一起跳舞" },
+          { time: 16, kr: "이 순간이 영원하길", zh: "願這一刻永恆" },
+          { time: 20, kr: "Blue Valentine", zh: "藍色情人節" },
+          { time: 24, kr: "너의 눈빛이 좋아", zh: "喜歡你的眼神" },
+          { time: 28, kr: "내 마음을 가져가", zh: "帶走我的心" },
+          { time: 32, kr: "Forever you and I", zh: "永遠是你和我" },
+          { time: 36, kr: "사랑해 널", zh: "我愛你" },
+          { time: 40, kr: "Blue Valentine", zh: "藍色情人節" }
+        ]
+      },
+      {
+        // cortis - go
+        lyrics: [
+          { time: 0, kr: "Let's go go go", zh: "走吧走吧走吧" },
+          { time: 3, kr: "멈추지 마", zh: "不要停下" },
+          { time: 6, kr: "앞으로 나아가", zh: "向前進" },
+          { time: 10, kr: "우리의 길을 가", zh: "走我們的路" },
+          { time: 14, kr: "Go go go", zh: "走走走" },
+          { time: 18, kr: "두려움 없이", zh: "沒有恐懼" },
+          { time: 22, kr: "함께 달려가자", zh: "一起奔跑吧" },
+          { time: 26, kr: "끝까지 가보자", zh: "走到最後" },
+          { time: 30, kr: "We can make it", zh: "我們能做到" },
+          { time: 34, kr: "Go go go", zh: "走走走" },
+          { time: 38, kr: "세상을 향해", zh: "向著世界" }
+        ]
+      }
+    ];
+
+    // 播放狀態
+    let playStates = [
+      { playing: false, time: 0, interval: null },
+      { playing: false, time: 0, interval: null },
+      { playing: false, time: 0, interval: null }
+    ];
+
+    // 初始化所有歌詞
+    function initLyrics() {
+      songsData.forEach((song, index) => {
+        const container = document.getElementById(`lyrics-container-${index}`);
+        container.innerHTML = song.lyrics.map((line, i) => `
+          <div class="lyric-line" data-time="${line.time}" onclick="seekTo(${index}, ${line.time})">
+            <div class="lyric-korean">${line.kr}</div>
+            <div class="lyric-chinese">${line.zh}</div>
+          </div>
+        `).join('');
+      });
+    }
+
+    // 切換歌詞顯示
+    function toggleLyrics(songIndex) {
+      const lyricsSection = document.getElementById(`lyrics-${songIndex}`);
+      lyricsSection.classList.toggle('hidden');
+    }
+
+    // 播放/暫停
+    function togglePlay(songIndex) {
+      const state = playStates[songIndex];
+      state.playing = !state.playing;
+      
+      if (state.playing) {
+        state.interval = setInterval(() => {
+          state.time += 0.1;
+          updateTime(songIndex);
+          updateLyrics(songIndex);
+        }, 100);
+      } else {
+        clearInterval(state.interval);
+      }
+    }
+
+    // 重置
+    function resetLyrics(songIndex) {
+      const state = playStates[songIndex];
+      state.playing = false;
+      state.time = 0;
+      clearInterval(state.interval);
+      updateTime(songIndex);
+      updateLyrics(songIndex);
+    }
+
+    // 跳轉到指定時間
+    function seekTo(songIndex, time) {
+      playStates[songIndex].time = time;
+      updateTime(songIndex);
+      updateLyrics(songIndex);
+    }
+
+    // 更新時間顯示
+    function updateTime(songIndex) {
+      const time = playStates[songIndex].time;
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      document.getElementById(`time-${songIndex}`).textContent = 
+        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    // 更新歌詞高亮
+    function updateLyrics(songIndex) {
+      const container = document.getElementById(`lyrics-container-${songIndex}`);
+      const lines = container.querySelectorAll('.lyric-line');
+      const currentTime = playStates[songIndex].time;
+      const lyrics = songsData[songIndex].lyrics;
+      
+      let activeIndex = -1;
+      for (let i = 0; i < lyrics.length; i++) {
+        if (currentTime >= lyrics[i].time) {
+          activeIndex = i;
+        } else {
+          break;
+        }
+      }
+      
+      lines.forEach((line, i) => {
+        line.classList.remove('active', 'passed');
+        if (i === activeIndex) {
+          line.classList.add('active');
+          line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else if (i < activeIndex) {
+          line.classList.add('passed');
+        }
+      });
+    }
+
+    // 頁面載入時初始化
+    initLyrics();
+  </script>
 </body>
-</html>
+  </html>
+git add songs.html
+git commit -m "新增即時歌詞同步功能"
+git push
 
