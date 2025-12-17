@@ -22,7 +22,6 @@
       height: 450px;
     }
     
-    /* 歌詞同步區域 */
     .lyrics-sync-section {
       margin-top: 20px;
       background: #f9f9f9;
@@ -161,7 +160,6 @@
     <section>
       <h2>🔥 本週 TOP 3</h2>
       
-      <!-- 歌曲 1 -->
       <div class="song">
         <h3>1️⃣ LE SSERAFIM - SPAGHETTI (feat. j-hope of BTS)</h3>
         <iframe 
@@ -181,14 +179,13 @@
             <button class="control-btn" onclick="togglePlay(0)">⏯️ 播放/暫停</button>
             <button class="control-btn" onclick="resetLyrics(0)">🔄 重新開始</button>
             <div class="time-display">
-              <span id="time-0">00:00</span> / 03:30
+              <span id="time-0">00:00</span> / 02:46
             </div>
           </div>
           <div class="lyrics-container" id="lyrics-container-0"></div>
         </div>
       </div>
       
-      <!-- 歌曲 2 -->
       <div class="song">
         <h3>2️⃣ NMIXX - Blue Valentine</h3>
         <iframe 
@@ -215,7 +212,6 @@
         </div>
       </div>
       
-      <!-- 歌曲 3 -->
       <div class="song">
         <h3>3️⃣ cortis - go</h3>
         <iframe 
@@ -257,83 +253,52 @@
   </footer>
 
   <script>
-    // 歌詞資料庫
     const songsData = [
       {
-        // LE SSERAFIM - SPAGHETTI
         lyrics: [
           { time: 5, kr: "This is a hot spot", zh: "這裡是個熱門地帶" },
           { time: 7, kr: "숨 쉬듯 찾는 네 밥상", zh: "像呼吸一樣找尋你的餐桌" },
           { time: 9, kr: "단골이 된 넌 fall in love", zh: "成為常客的你陷入愛裡" },
-          { time: 12, kr: "참을 수 없는 맛", zh: " 無法抗拒的味道" },
-          { time: 14, kr: "우린 in the kitchen ", zh: "我們在廚房裡" },
-          { time: 16, kr: "Cookin’ it up, what you craving? ", zh: "烹飪出你渴望的味道" },
+          { time: 12, kr: "참을 수 없는 맛", zh: "無法抗拒的味道" },
+          { time: 14, kr: "우린 in the kitchen", zh: "我們在廚房裡" },
+          { time: 16, kr: "Cookin' it up, what you craving?", zh: "烹飪出你渴望的味道" },
           { time: 18, kr: "나의 입맛대로 saucin", zh: "按照我的口味加上醬汁" },
-          { time: 20, kr: "And now the world’s gone mad", zh: "現在全世界都瘋狂了" },
-          { time: 23, kr: "You don’t need to think too much", zh: "你不需要想太多" },
-          { time: 26, kr: "씹고 뜯고 맛보고 즐기다 가면 돼 (Yeah, yeah, yeah) ", zh: "咬下、撕開、品嚐、享受就好 (耶，耶，耶)" },
-          { time: 30, kr: "깊이 스며들어 in your mouth (Ooh)", zh: "深深滲入你的口中 (喔)" },
-          { time: 34, kr: "Guilty pleasure never killed nobody,드셔봐", zh: "罪惡的快樂從沒害過誰，嚐嚐吧" }
-          { time: 38, kr: "(Woo) 이빨 사이 낀 spaghetti", zh: "(Woo) 卡在牙縫間的義大利麵" }
-          { time: 42, kr: "빼고 싶니? Bon appétit", zh: "想挑出來嗎？請慢用" }
-          { time: 44, kr: "그냥 포기해 어차피", zh: "乾脆放棄吧，反正一樣" }
-          { time: 46, kr: "Eat it up, eat it, eat it up (Woo)", zh: "吃下去吧，快吃，繼續吃 (嗚)" }
-          { time: 48, kr: "(Woo) 머릿속 낀 SSERAFIM, zh: "Woo) , zh: "腦海中卡著LE SSERAFIM" }
-          { time: 50, kr: "Bad bitch in between your teeth", zh: "你的牙縫間的壞女孩" }
-          { time: 52, kr: "그냥 포기해 어차피", zh: "乾脆放棄吧，反正一樣" }
-          { time: 54, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" }
-          { time: 56, kr: "Eat it up, eat it, eat it (Woah) ", zh: "吃下去吧，吃掉它 (喔)" }
-          { time: 58, kr: "Eat it up, eat it (Up)", zh: "吃下去吧，繼續吃" }
-          { time: 1:00, kr: "Eat it up, eat it, eat it ", zh: "吃下去吧，吃掉它" }
-          { time: 1:02, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" }
-          { time: 1:04, kr: "Yeah, this is the sweet spot", zh: "這裡是最甜蜜的地方" }
-      
-          { time: 1:07, kr: "Heat up the scene, it’s that big shot", zh: "讓現場升溫，這是大人物的登場" }
-          { time:1:09, kr: "Chef’s choice, 널 위한 킥이야", zh: "主廚特製，為你準備的驚喜" }
-          { time: 1:11, kr: "You lost in the sauce, no turnin’ back", zh: "你迷失在醬汁裡，已無法回頭" }
-          { time: 1:13, kr: "더 취할 거야 밤새, 기울여 절로", zh: "我要醉整晚，酒杯自然傾斜" }
-          { time: 1:15, kr: "난 빈 잔은 받고, 이젠 핀잔은 걸러", zh: "我只接空杯，不再理會責備" }
-          { time: 1:17, kr: "좋은 게 좋은 거지 좋다는 게, 왜 뭐?", zh: "好的就是好，有什麼問題？" }
-          { time: 1:19, kr: "느껴봐 어서, 꺾지 말고, 벌컥", zh: "느껴봐 어서, 꺾지 말고, 벌컥" }
-          { time: 1:22, kr: "Snap it up like a Getty", zh: "快拍下來，像蓋帝攝影那樣精彩" }
-          { time: 1:24, kr: "내 김치 포즈는 여전히 priceless", zh: "我的泡菜姿勢依舊無價" }
-          { time: 1:26, kr: "Whatever I’m cookin’, star같이", zh: "無論我煮什麼，都像明星一樣閃亮" }
-          { time: 1:28, kr: "어떤 코스든 원하면 말아주는 쉐키", zh: "無論哪一道菜，我都能滿足你" }
-          { time: 1:30, kr: "내가 네 취향 드라마 주인공이고", zh: "我就是你口味的浪漫主角" }
-          { time: 1:33, kr: "또 숨, 듣, 명이고, 고칼로리 Hershey 초코", zh: "也是暗藏名曲，高熱量的Hershey巧克力" }
-          { time: 1:35, kr: "모든 줏대를 홀리는 타로, 넌 음미해 나로", zh: "讓所有標準失效的塔羅，你細細品味我" }
-           { time: 1:37, kr: "자 이제 까에서 빠로, brr", zh: "現在從K到P，咕嚕" }
-           { time: 1:39, kr: "Yeah, this is a hot spot", zh: " 這裡是個熱門地帶" }
-           { time: 1:41, kr: "Don’t give a fuck, 네가 뭐라던 ", zh: "不在乎你怎麼說" }
-           { time: 1:43, kr: "씹어보셔 맛이 좋아", zh: "嚐嚐看，味道很好" }
-           { time: 1:45, kr: "필요 없어 three star", zh: "不需要什麼三星評價" }
-           { time: 1:48, kr: "Yeah, 말로만 hate it", zh: "嘴上說討厭" }
-           { time: 1:50, kr: "어디 갔어 너의 diet?", zh: "你的減肥去哪了？" }
-           { time: 1:52, kr: "남몰래 쓱 하는 음미", zh: "偷偷又細細品味" }
-           { time: 1:54, kr: "You better stop lying ", zh: "別再裝了" }
-           { time:1:57, kr: "Don’t care what you talk about", zh: "不在乎你說什麼" }
-           { time: 2:00, kr: "오늘도 제 발로 달려온 건 너잖아 (Yeah, yeah, yeah)", zh: "今天又是你自己跑來的 (耶，耶，耶)" }
-           { time: 2:05 kr: "깊이 스며들어 in your mouth (Ooh)", zh: "深深滲入你的口中 (喔)}
-           { time: 2:08, kr: "진짜 사랑인지 아닌지 곱씹어 봐", zh: "진짜 사랑인지 아닌지 곱씹어 봐" }
-           { time:2:13, kr: "(Woo) 이빨 사이 낀 spaghetti", zh: "(Woo) 卡在牙縫間的義大利麵" }
-          { time: 2:16, kr: "빼고 싶니? Bon appétit", zh: "想挑出來嗎？請慢用" }
-          { time:2:18, kr: "그냥 포기해 어차피", zh: "乾脆放棄吧，反正一樣" }
-          { time:2:20, kr: "Eat it up, eat it, eat it up (Woo)", zh: "吃下去吧，快吃，繼續吃 (嗚)" }
-          { time: 2:22, kr: "(Woo) 머릿속 낀 SSERAFIM,  , zh:"腦海中卡著LESSERAFIM" }
-          { time: 2:24, kr: "Bad bitch in between your teeth", zh: "你的牙縫間的壞女孩" }
-          { time: 2:26, kr: "그냥 포기해 어차피", zh: "乾脆放棄吧，反正一樣" }
-          { time:2:28, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" }
-          { time: 2:30, kr: "Eat it up, eat it, eat it (Woah) ", zh: "吃下去吧，吃掉它 (喔)" }
-          { time: 2:32, kr: "Eat it up, eat it (Up)", zh: "吃下去吧，繼續吃" }
-           { time: 2:37, kr: "Eat it up, eat it, eat it (Woah) ", zh: "吃下去吧，吃掉它 (喔)" }
-          { time: 2:39, kr: "Eat it up, eat it, eat it ", zh: "吃下去吧，吃掉它" }
-           { time: 2:41, kr: "Eat it up, eat it, eat it (Woah) ", zh: "吃下去吧，吃掉它 (喔)" }
-          { time: 2:43, kr: "Eat it up, eat it, eat it ", zh: "吃下去吧，吃掉它" }
-          { time: 2:46, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" }
+          { time: 20, kr: "And now the world's gone mad", zh: "現在全世界都瘋狂了" },
+          { time: 23, kr: "You don't need to think too much", zh: "你不需要想太多" },
+          { time: 26, kr: "씹고 뜯고 맛보고 즐기다 가면 돼", zh: "咬下、撕開、品嚐、享受就好" },
+          { time: 30, kr: "깊이 스며들어 in your mouth", zh: "深深滲入你的口中" },
+          { time: 34, kr: "Guilty pleasure never killed nobody, 드셔봐", zh: "罪惡的快樂從沒害過誰，嚐嚐吧" },
+          { time: 38, kr: "이빨 사이 낀 spaghetti", zh: "卡在牙縫間的義大利麵" },
+          { time: 42, kr: "빼고 싶니? Bon appétit", zh: "想挑出來嗎？請慢用" },
+          { time: 44, kr: "그냥 포기해 어차피", zh: "乾脆放棄吧，反正一樣" },
+          { time: 46, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" },
+          { time: 48, kr: "머릿속 낀 SSERAFIM", zh: "腦海中卡著LE SSERAFIM" },
+          { time: 50, kr: "Bad bitch in between your teeth", zh: "你的牙縫間的壞女孩" },
+          { time: 52, kr: "그냥 포기해 어차피", zh: "乾脆放棄吧，反正一樣" },
+          { time: 54, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" },
+          { time: 58, kr: "Eat it up, eat it", zh: "吃下去吧，繼續吃" },
+          { time: 60, kr: "Eat it up, eat it, eat it", zh: "吃下去吧，吃掉它" },
+          { time: 64, kr: "Yeah, this is the sweet spot", zh: "這裡是最甜蜜的地方" },
+          { time: 67, kr: "Heat up the scene, it's that big shot", zh: "讓現場升溫，這是大人物的登場" },
+          { time: 69, kr: "Chef's choice, 널 위한 킥이야", zh: "主廚特製，為你準備的驚喜" },
+          { time: 71, kr: "You lost in the sauce, no turnin' back", zh: "你迷失在醬汁裡，已無法回頭" },
+          { time: 73, kr: "더 취할 거야 밤새, 기울여 절로", zh: "我要醉整晚，酒杯自然傾斜" },
+          { time: 75, kr: "난 빈 잔은 받고, 이젠 핀잔은 걸러", zh: "我只接空杯，不再理會責備" },
+          { time: 77, kr: "좋은 게 좋은 거지 좋다는 게, 왜 뭐?", zh: "好的就是好，有什麼問題？" },
+          { time: 79, kr: "느껴봐 어서, 꺾지 말고, 벌컥", zh: "快感受，不要拒絕，一飲而盡" },
+          { time: 82, kr: "Snap it up like a Getty", zh: "快拍下來，像蓋帝攝影那樣精彩" },
+          { time: 84, kr: "내 김치 포즈는 여전히 priceless", zh: "我的泡菜姿勢依舊無價" },
+          { time: 86, kr: "Whatever I'm cookin', star같이", zh: "無論我煮什麼，都像明星一樣閃亮" },
+          { time: 88, kr: "어떤 코스든 원하면 말아주는 쉐키", zh: "無論哪一道菜，我都能滿足你" },
+          { time: 113, kr: "이빨 사이 낀 spaghetti", zh: "卡在牙縫間的義大利麵" },
+          { time: 116, kr: "빼고 싶니? Bon appétit", zh: "想挑出來嗎？請慢用" },
+          { time: 118, kr: "그냥 포기해 어차피", zh: "乾脆放棄吧，反正一樣" },
+          { time: 120, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" },
+          { time: 133, kr: "Eat it up, eat it, eat it", zh: "吃下去吧，吃掉它" },
+          { time: 143, kr: "Eat it up, eat it, eat it up", zh: "吃下去吧，快吃，繼續吃" }
         ]
       },
       {
-        // NMIXX - Blue Valentine
         lyrics: [
           { time: 0, kr: "Blue Valentine", zh: "藍色情人節" },
           { time: 4, kr: "너와 나의 이야기", zh: "你和我的故事" },
@@ -349,7 +314,6 @@
         ]
       },
       {
-        // cortis - go
         lyrics: [
           { time: 0, kr: "Let's go go go", zh: "走吧走吧走吧" },
           { time: 3, kr: "멈추지 마", zh: "不要停下" },
@@ -366,33 +330,33 @@
       }
     ];
 
-    // 播放狀態
     let playStates = [
       { playing: false, time: 0, interval: null },
       { playing: false, time: 0, interval: null },
       { playing: false, time: 0, interval: null }
     ];
 
-    // 初始化所有歌詞
     function initLyrics() {
       songsData.forEach((song, index) => {
         const container = document.getElementById(`lyrics-container-${index}`);
-        container.innerHTML = song.lyrics.map((line, i) => `
-          <div class="lyric-line" data-time="${line.time}" onclick="seekTo(${index}, ${line.time})">
-            <div class="lyric-korean">${line.kr}</div>
-            <div class="lyric-chinese">${line.zh}</div>
-          </div>
-        `).join('');
+        if (container) {
+          container.innerHTML = song.lyrics.map((line, i) => `
+            <div class="lyric-line" data-time="${line.time}" onclick="seekTo(${index}, ${line.time})">
+              <div class="lyric-korean">${line.kr}</div>
+              <div class="lyric-chinese">${line.zh}</div>
+            </div>
+          `).join('');
+        }
       });
     }
 
-    // 切換歌詞顯示
     function toggleLyrics(songIndex) {
       const lyricsSection = document.getElementById(`lyrics-${songIndex}`);
-      lyricsSection.classList.toggle('hidden');
+      if (lyricsSection) {
+        lyricsSection.classList.toggle('hidden');
+      }
     }
 
-    // 播放/暫停
     function togglePlay(songIndex) {
       const state = playStates[songIndex];
       state.playing = !state.playing;
@@ -408,7 +372,6 @@
       }
     }
 
-    // 重置
     function resetLyrics(songIndex) {
       const state = playStates[songIndex];
       state.playing = false;
@@ -418,25 +381,26 @@
       updateLyrics(songIndex);
     }
 
-    // 跳轉到指定時間
     function seekTo(songIndex, time) {
       playStates[songIndex].time = time;
       updateTime(songIndex);
       updateLyrics(songIndex);
     }
 
-    // 更新時間顯示
     function updateTime(songIndex) {
       const time = playStates[songIndex].time;
       const minutes = Math.floor(time / 60);
       const seconds = Math.floor(time % 60);
-      document.getElementById(`time-${songIndex}`).textContent = 
-        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      const timeEl = document.getElementById(`time-${songIndex}`);
+      if (timeEl) {
+        timeEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
     }
 
-    // 更新歌詞高亮
     function updateLyrics(songIndex) {
       const container = document.getElementById(`lyrics-container-${songIndex}`);
+      if (!container) return;
+      
       const lines = container.querySelectorAll('.lyric-line');
       const currentTime = playStates[songIndex].time;
       const lyrics = songsData[songIndex].lyrics;
@@ -461,10 +425,8 @@
       });
     }
 
-    // 頁面載入時初始化
-    initLyrics();
+    window.addEventListener('DOMContentLoaded', initLyrics);
   </script>
 </body>
-  </html>
-
+</html>
 
