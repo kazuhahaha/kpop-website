@@ -292,7 +292,7 @@ function updateActiveLyric(song, time) {
     if (i === activeIdx) {
       el.classList.add('active');
       // 自動捲動
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
     } else if (i < activeIdx) {
       el.classList.add('past');
     }
