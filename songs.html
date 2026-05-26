@@ -2,389 +2,96 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🎵 推薦歌曲 - K-pop 音樂站</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* 簡易樣式，維持您的風格 */
+    body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+    .container { max-width: 800px; margin: auto; }
+    .card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .song-list-item { padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.3s; }
+    .song-list-item:hover { background: #f9f9f9; }
+    .nav-links a { margin-right: 15px; text-decoration: none; color: #333; }
+  </style>
 </head>
 <body>
- 
-<!-- ── Nav ── -->
 <nav>
-  <a href="index.html" class="nav-logo">🎵 K-pop 音樂站</a>
   <div class="nav-links">
     <a href="index.html">首頁</a>
-    <a href="songs.html" class="active">推薦歌曲</a>
+    <a href="songs.html" style="font-weight:bold;">推薦歌曲</a>
     <a href="idols.html">偶像介紹</a>
   </div>
-  <div class="nav-right">
-    <button id="darkToggle">🌙 Dark</button>
-  </div>
 </nav>
- 
-<div class="container page">
- 
-  <!-- ── 頁面標題 ── -->
-  <div class="section-title fade-up"><span>🎵</span> 推薦歌曲</div>
- 
-  <!-- ── 搜尋框 ── -->
-  <div class="search-bar fade-up">
-    <span class="search-icon">🔍</span>
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="搜尋歌曲或團體名稱..."
-      oninput="filterSongs()"
-    />
+
+<div class="container">
+  <h2>🎵 推薦歌曲</h2>
+  
+  <div class="card" style="text-align:center;">
+    <h3>▶ 目前選擇</h3>
+    <div id="npTitle" style="font-size: 20px; margin: 15px 0; font-weight: bold;">請點選下方歌曲</div>
+    <a id="ytLink" href="#" target="_blank" style="display:none; padding: 12px 25px; background: #ff0000; color: white; text-decoration: none; border-radius: 8px;">
+      📺 前往 YouTube 觀看
+    </a>
   </div>
- 
-  <!-- ── 收藏區 ── -->
-  <div class="favs-section fade-up" id="favsSection">
-  <div class="section-title"style="margin-bottom:12px;"><span > ⭐ </span> 我的收藏歌曲</div>
-    <div class="card" id="favsContainer">
-      <div class="fav-empty" id="favEmpty">還沒有收藏歌曲，點擊 ❤️ 加入收藏！</div>
-    </div>
+
+  <div class="card">
+    <h3>歌曲列表</h3>
+    <div id="songList"></div>
   </div>
- 
-  <!-- ── 主要雙欄播放器 ── -->
-  <div class="player-layout fade-up">
- 
-    <!-- 左側：MV 播放器 -->
-    <div class="card mv-player-card">
-      <h3>📺 MV 播放器</h3>
-      <iframe
-        id="mvPlayer"
-        src="https://www.youtube.com/embed/nIHBHMPQgdY?enablejsapi=1&origin=https://kazuhahaha.github.io"
-        allowfullscreen
-        allow="autoplay; encrypted-media"
-        title="MV Player"
-      ></iframe>
-      <div class="now-playing-info">
-        <div class="now-playing-label">▶ NOW PLAYING</div>
-        <div class="now-playing-title" id="npTitle">SPAGHETTI (feat. j-hope)</div>
-        <div class="now-playing-artist" id="npArtist">LE SSERAFIM</div>
-      </div>
-    </div>
- 
-    <!-- 右側：同步歌詞 -->
-    <div class="card lyrics-card" id="lyricsCard">
-      <div class="lyrics-header">
-        <h3>📜 同步歌詞</h3>
-        <span class="sync-badge">⚡ SYNC</span>
-      </div>
-      <div id="lyricsContainer">
-        <!-- 歌詞由 JS 渲染 -->
-      </div>
-    </div>
- 
-  </div>
- 
-  <!-- ── 歌曲列表 ── -->
-  <div class="section-title fade-up"><span>🔥</span> 本週 TOP 3</div>
-  <div id="songList" style="margin-bottom:40px;">
-    <!-- 由 JS 渲染 -->
-  </div>
- 
-  <!-- ── 經典必聽 ── -->
-  <div class="section-title fade-up"><span>🎧</span> 經典必聽</div>
-  <div class="card fade-up">
-    <div class="chart-list">
-      <div class="chart-item">
-        <div class="chart-rank">♪</div>
-        <div class="chart-info">
-          <div class="chart-song">THIS IS FOR</div>
-          <div class="chart-artist">TWICE</div>
-        </div>
-      </div>
-      <div class="chart-item">
-        <div class="chart-rank">♪</div>
-        <div class="chart-info">
-          <div class="chart-song">Killin' It Girl (feat. GloRilla)</div>
-          <div class="chart-artist">j-hope</div>
-        </div>
-      </div>
-      <div class="chart-item">
-        <div class="chart-rank">♪</div>
-        <div class="chart-info">
-          <div class="chart-song">Rich Man</div>
-          <div class="chart-artist">aespa</div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-</div><!-- /container -->
- 
-<footer>© 2025 K-pop 專題小組｜Weverse 風格升級版</footer>
- 
+</div>
+
 <script>
-/* =====================================================
-   K-pop 音樂站 - songs.js（內嵌）
-   同步歌詞 | 搜尋 | 收藏 | Dark Mode
-   ===================================================== */
- 
-/* ── 歌曲資料（保留原始結構，加入 youtubeId） ── */
- const songsData = [
-  {
-    id: 1,
-    title: 'SPAGHETTI (feat. j-hope)',
-    artist: 'LE SSERAFIM',
-    youtubeId:"TvVtYaqCni8" ,
-      { time: 12, kr: '너를 생각하면 머리가 아파',      zh: '一想到你頭就痛了' },
-      { time: 19, kr: '근데 왜 자꾸 보고 싶어지는 거야', zh: '但為什麼我還是一直想見你' },
-      { time: 26, kr: '우리는 스파게티처럼',            zh: '我們就像義大利麵' },
-      { time: 33, kr: '떼려야 뗄 수 없는 사이',         zh: '是分也分不開的關係' },
-      { time: 40, kr: '엉켜버린 실처럼 꼬여버린 우리',  zh: '像纏繞的線一樣交織在一起的我們' },
-      { time: 48, kr: '이게 사랑인가 봐',               zh: '這大概就是愛吧' },
-      { time: 55, kr: '뜨겁게 끓어오르는 감정',         zh: '滾燙沸騰的情感' },
-      { time: 62, kr: '멈출 수가 없어 이 느낌',         zh: '無法停止這種感覺' },
-      { time: 70, kr: '당신만 생각해 오늘도',           zh: '今天也只想著你' },
-      { time: 78, kr: '스파게티처럼 풀리지 않는',       zh: '像義大利麵一樣解不開的' },
-      { time: 85, kr: '내 마음 이게 사랑이야',          zh: '我的心，這就是愛' },
-    ]
-  },
-  {
-    id: 2,
-    title: 'Blue Valentine',
-    artist: 'NMIXX',
-    youtubeId: 'EmeW6li6bbo',
-    lyrics: [
-      { time: 4,  kr: '파란 하늘 아래 우리 함께',       zh: '在藍色天空下我們一起' },
-      { time: 11, kr: '발렌타인처럼 설레는 마음',        zh: '像情人節一樣心跳不已' },
-      { time: 18, kr: '너의 손을 잡고 싶어',             zh: '我想牽你的手' },
-      { time: 25, kr: '파란 빛깔 달콤한 사랑',           zh: '藍色甜蜜的愛' },
-      { time: 32, kr: '블루 발렌타인 나의 하루',         zh: 'Blue Valentine 我的一天' },
-      { time: 40, kr: '오직 너만 생각해',                zh: '只想著你' },
-      { time: 47, kr: '이 순간이 영원하길',              zh: '希望這一刻永遠持續' },
-      { time: 54, kr: '우리 함께라면 뭐든 할 수 있어',   zh: '只要我們在一起什麼都能做到' },
-      { time: 62, kr: '파란 바다처럼 깊은 사랑',         zh: '像藍海一樣深沉的愛' },
-      { time: 70, kr: '이 감정 숨길 수 없어',            zh: '這份情感無法隱藏' },
-    ]
-  },
-  {
-    id: 3,
-    title: 'go',
-    artist: 'cortis',
-    youtubeId: 'VEKiPnHWYhU',
-    lyrics: [
-      { time: 5,  kr: '가자 어디든 함께',               zh: '走吧，無論哪裡一起' },
-      { time: 13, kr: '두려움은 없어 이제',              zh: '現在沒有恐懼了' },
-      { time: 21, kr: '너와 함께라면 세상 끝까지',        zh: '只要和你在一起，到世界盡頭也沒關係' },
-      { time: 29, kr: 'Go go go 멈추지 마',             zh: 'Go go go 不要停下' },
-      { time: 37, kr: '우리의 길을 달려',               zh: '奔跑在我們的路上' },
-      { time: 45, kr: '별빛 아래 춤을 춰',              zh: '在星光下起舞' },
-      { time: 53, kr: '이 밤이 다 지나도',              zh: '就算這個夜晚結束' },
-      { time: 61, kr: '너와 나의 이야기는 계속돼',       zh: '你我的故事依然繼續' },
-    ]
-  }
+const songsData = [
+  { title: 'BOOMPALA', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=Gnn4GRSzRXI' },
+  { title: 'Heavy Serenade', artist: 'NMIXX', url: 'https://youtu.be/6Ycn9qZK09I' },
+  { title: 'It’s Me', artist: 'ILLIT', url: 'https://youtu.be/lOpdrEgmYzY' },
+  { title: 'SPAGHETTI', artist: 'LE SSERAFIM', url: 'https://youtu.be/TvVtYaqCni8' },
+  { title: 'HOT', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=r9AEGPB6qIU' },
+  { title: 'CRAZY', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=n6B5gQXlB-0' },
+  { title: 'EASY', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=qEW5IPfGLUI' },
+  { title: 'Perfect Night', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=hLvWy2b857I' },
+  { title: 'Eve, Psyche & the Bluebeard’s wife', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=dZs_cLHfnNA' },
+  { title: 'UNFORGIVEN', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=UBURTj20HXI' },
+  { title: 'FEARLESS', artist: 'LE SSERAFIM', url: 'https://youtu.be/4vbDFu0PUew' },
+  { title: 'Black Mamba', artist: 'aespa', url: 'https://youtu.be/ZeerrnuLi5E' },
+  { title: 'Next Level', artist: 'aespa', url: 'https://youtu.be/4TWR90KJl84' },
+  { title: 'Savage', artist: 'aespa', url: 'https://youtu.be/WPdWvnAAurg' },
+  { title: 'Girls', artist: 'aespa', url: 'https://youtu.be/dYRITmpFbJ4' },
+  { title: 'Spicy', artist: 'aespa', url: 'https://youtu.be/Os_heh8vPfs' },
+  { title: 'Drama', artist: 'aespa', url: 'https://youtu.be/D8VEhcPeSlc' },
+  { title: 'Supernova', artist: 'aespa', url: 'https://youtu.be/phuiiNCxRMg' },
+  { title: 'Whiplash', artist: 'aespa', url: 'https://youtu.be/jWQx2f-CErU' },
+  { title: 'Dirty Work', artist: 'aespa', url: 'https://youtu.be/M2WTUoy4y6E' },
+  { title: 'Rich Man', artist: 'aespa', url: 'https://youtu.be/5oQVTnq-UKk' },
+  { title: 'Attention', artist: 'NewJeans', url: 'https://youtu.be/js1CtxSY38I' },
+  { title: 'Hype Boy', artist: 'NewJeans', url: 'https://youtu.be/11cta61wi0g' },
+  { title: 'Cookie', artist: 'NewJeans', url: 'https://youtu.be/VOmIplFAGeg' },
+  { title: 'Ditto', artist: 'NewJeans', url: 'https://youtu.be/Km71Rr9K-Bw' },
+  { title: 'OMG', artist: 'NewJeans', url: 'https://youtu.be/sVTy_wmn5SU' },
+  { title: 'Super Shy', artist: 'NewJeans', url: 'https://youtu.be/ArmDp-zijuc' },
+  { title: 'ETA', artist: 'NewJeans', url: 'https://youtu.be/jOTfBlKSQYY' },
+  { title: 'How Sweet', artist: 'NewJeans', url: 'https://youtu.be/Q3K0TOvTOno' }
 ];
- 
-/* ── 狀態 ── */
-let currentSongIndex = 0;
-let lyricTimer = null;
-let mockTime = 0;
-let isPlaying = false;
- 
-/* ── 渲染歌曲列表 ── */
-function renderSongList(filtered) {
-  const list = filtered ?? songsData;
-  const container = document.getElementById('songList');
-  container.innerHTML = '';
- 
-  if (list.length === 0) {
-    container.innerHTML = '<p style="text-align:center;color:var(--text3);padding:24px;">找不到符合的歌曲 😢</p>';
-    return;
-  }
- 
-  list.forEach((song, idx) => {
-    const realIdx = songsData.indexOf(song);
-    const isFav = getFavs().includes(song.id);
-    const isActive = realIdx === currentSongIndex;
- 
-    const item = document.createElement('div');
-    item.className = `song-list-item fade-up${isActive ? ' active-song' : ''}`;
-    item.innerHTML = `
-      <div class="song-num">${idx + 1}</div>
-      <div class="song-info">
-        <div class="song-name">${song.title}</div>
-        <div class="song-artist">${song.artist}</div>
-      </div>
-      <button class="fav-btn${isFav ? ' active' : ''}" onclick="toggleFav(event, ${song.id})" title="收藏">
-        ${isFav ? '❤️' : '🤍'}
-      </button>
-    `;
-    item.addEventListener('click', (e) => {
-      if (e.target.classList.contains('fav-btn')) return;
-      loadSong(realIdx);
-    });
-    container.appendChild(item);
-  });
-}
- 
-/* ── 載入歌曲 ── */
+
 function loadSong(idx) {
-  currentSongIndex = idx;
   const song = songsData[idx];
- 
-  // 更新 iframe
-  const iframe = document.getElementById('mvPlayer');
-  iframe.src = `https://www.youtube.com/embed/${song.youtubeId}?autoplay=1&enablejsapi=1&origin=https://kazuhahaha.github.io`;
- 
-  // 更新 Now Playing
-  document.getElementById('npTitle').textContent = song.title;
-  document.getElementById('npArtist').textContent = song.artist;
- 
-  // 渲染歌詞
-  renderLyrics(song);
- 
-  // 重設計時器
-  clearInterval(lyricTimer);
-  mockTime = 0;
-  isPlaying = true;
-  startLyricSync(song);
- 
-  // 更新列表 active 狀態
-  renderSongList(null);
+  document.getElementById('npTitle').textContent = `${song.title} - ${song.artist}`;
+  const btn = document.getElementById('ytLink');
+  btn.href = song.url;
+  btn.style.display = 'inline-block';
 }
- 
-/* ── 渲染歌詞 ── */
-function renderLyrics(song) {
-  const container = document.getElementById('lyricsContainer');
-  container.innerHTML = '';
-  song.lyrics.forEach((line, i) => {
+
+function renderList() {
+  const container = document.getElementById('songList');
+  songsData.forEach((song, idx) => {
     const div = document.createElement('div');
-    div.className = 'lyric-line';
-    div.id = `lyric-${i}`;
-    div.innerHTML = `
-      <div class="lyric-kr">${line.kr}</div>
-      <div class="lyric-zh">${line.zh}</div>
-    `;
-    // 點擊歌詞跳到對應時間
-    div.addEventListener('click', () => {
-      mockTime = line.time;
-      updateActiveLyric(song, mockTime);
-    });
+    div.className = 'song-list-item';
+    div.innerHTML = `<strong>${song.title}</strong> - <small>${song.artist}</small>`;
+    div.onclick = () => loadSong(idx);
     container.appendChild(div);
   });
 }
- 
-/* ── 同步歌詞（用 setInterval 模擬時間推進） ── */
-function startLyricSync(song) {
-  lyricTimer = setInterval(() => {
-    if (!isPlaying) return;
-    mockTime++;
-    updateActiveLyric(song, mockTime);
-  }, 1000);
-}
- 
-function updateActiveLyric(song, time) {
-  const lines = document.querySelectorAll('.lyric-line');
-  let activeIdx = -1;
- 
-  // 找到目前應該高亮的歌詞
-  song.lyrics.forEach((line, i) => {
-    if (time >= line.time) activeIdx = i;
-  });
- 
-  lines.forEach((el, i) => {
-    el.classList.remove('active', 'past');
-    if (i === activeIdx) {
-      el.classList.add('active');
-      // 自動捲動
-    
-    } else if (i < activeIdx) {
-      el.classList.add('past');
-    }
-  });
-}
- 
-/* ── 搜尋過濾 ── */
-function filterSongs() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  const filtered = songsData.filter(s =>
-    s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q)
-  );
-  renderSongList(filtered);
-}
- 
-/* ── 收藏功能 ── */
-function getFavs() {
-  return JSON.parse(localStorage.getItem('kpop_favs') || '[]');
-}
-function saveFavs(favs) {
-  localStorage.setItem('kpop_favs', JSON.stringify(favs));
-}
-function toggleFav(e, songId) {
-  e.stopPropagation();
-  let favs = getFavs();
-  if (favs.includes(songId)) {
-    favs = favs.filter(id => id !== songId);
-  } else {
-    favs.push(songId);
-  }
-  saveFavs(favs);
-  renderSongList(null);
-  renderFavs();
-}
-function removeFav(songId) {
-  let favs = getFavs().filter(id => id !== songId);
-  saveFavs(favs);
-  renderSongList(null);
-  renderFavs();
-}
-function renderFavs() {
-  const favs = getFavs();
-  const container = document.getElementById('favsContainer');
-  const empty = document.getElementById('favEmpty');
- 
-  // 清除舊的 tag（保留 empty 訊息元素）
-  Array.from(container.querySelectorAll('.fav-tag')).forEach(el => el.remove());
- 
-  if (favs.length === 0) {
-    empty.style.display = '';
-    return;
-  }
-  empty.style.display = 'none';
- 
-  favs.forEach(id => {
-    const song = songsData.find(s => s.id === id);
-    if (!song) return;
-    const tag = document.createElement('span');
-    tag.className = 'fav-tag';
-    tag.innerHTML = `❤️ ${song.title} <span style="color:var(--text2);font-size:11px;"> – ${song.artist}</span> <span class="rm" onclick="removeFav(${song.id})">✕</span>`;
-    tag.addEventListener('click', (e) => {
-      if (e.target.classList.contains('rm')) return;
-      loadSong(songsData.indexOf(song));
-    });
-    container.appendChild(tag);
-  });
-}
- 
-/* ── Dark Mode ── */
-function initDark() {
-  const saved = localStorage.getItem('kpop_dark');
-  if (saved === 'true') {
-    document.body.classList.add('dark');
-    document.getElementById('darkToggle').textContent = '☀️ Light';
-  }
-}
-document.getElementById('darkToggle').addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('dark');
-  localStorage.setItem('kpop_dark', isDark);
-  document.getElementById('darkToggle').textContent = isDark ? '☀️ Light' : '🌙 Dark';
-});
- 
-/* ── 初始化 ── */
-initDark();
-renderSongList(null);
-renderFavs();
-loadSong(0);   // 預設載入第一首
- 
-/* 頁面離開時清除計時器 */
-window.addEventListener('beforeunload', () => clearInterval(lyricTimer));
+
+renderList();
 </script>
- 
 </body>
 </html>
- 
-
-
