@@ -7,10 +7,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- 
-<!-- ── Nav ── -->
+
 <nav>
-  <a href="index.html" class="nav-logo">🎵 K-pop 音樂站</a>
+  <span class="nav-logo">🎵 K-pop 音樂站</span>
   <div class="nav-links">
     <a href="index.html" class="active">首頁</a>
     <a href="songs.html">推薦歌曲</a>
@@ -20,8 +19,7 @@
     <button id="darkToggle">🌙 Dark</button>
   </div>
 </nav>
- 
-<!-- ── Hero ── -->
+
 <div class="container page">
   <div class="hero fade-up">
     <div class="hero-badge">✨ K-POP MUSIC PLATFORM</div>
@@ -29,145 +27,53 @@
     <p>偶像介紹 · 歌詞翻譯 · 同步歌詞 · 收藏管理</p>
     <a href="songs.html" class="btn-primary">開始探索 🔍</a>
   </div>
- 
-  <!-- ── 本週K-pop推薦（3 首卡片） ── -->
-  <div class="section-title fade-up"><span>🔥</span> 本週 K-pop 推薦歌曲</div>
-  <div class="songs-grid">
- 
-    <div class="card song-card fade-up" onclick="location.href='songs.html'">
-      <img
-        class="song-card-thumb"
-        src="https://img.youtube.com/vi/nIHBHMPQgdY/hqdefault.jpg"
-        alt="SPAGHETTI MV Thumbnail"
-        onerror="this.src='images/lesf.jpg'"
-      />
-      <div class="song-card-group">LE SSERAFIM</div>
-      <div class="song-card-title">SPAGHETTI (feat. j-hope)</div>
-      <span class="song-card-link">🎵 查看歌詞 →</span>
-    </div>
- 
-    <div class="card song-card fade-up" onclick="location.href='songs.html'">
-      <img
-        class="song-card-thumb"
-        src="https://img.youtube.com/vi/KTgHO8iEqXs/hqdefault.jpg"
-        alt="Blue Valentine MV Thumbnail"
-        onerror="this.src='images/njz.jpg'"
-      />
-      <div class="song-card-group">NMIXX</div>
-      <div class="song-card-title">Blue Valentine</div>
-      <span class="song-card-link">🎵 查看歌詞 →</span>
-    </div>
- 
-    <div class="card song-card fade-up" onclick="location.href='songs.html'">
-      <img
-        class="song-card-thumb"
-        src="https://img.youtube.com/vi/VEKiPnHWYhU/hqdefault.jpg"
-        alt="Super Shy MV Thumbnail"
-        onerror="this.src='images/njz.jpg'"
-      />
-      <div class="song-card-group">NewJeans</div>
-      <div class="song-card-title">Super Shy</div>
-      <span class="song-card-link">🎵 查看歌詞 →</span>
-    </div>
- 
-  </div>
- 
-  <!-- ── 本週熱門排行榜 ── -->
-  <div class="section-title fade-up"><span>🏆</span> 本週熱門排行榜</div>
-  <div class="card fade-up" style="margin-bottom:40px;">
-    <div class="chart-list">
- 
-      <div class="chart-item" onclick="location.href='songs.html'">
-        <div class="chart-rank gold">1</div>
-        <div class="chart-info">
-          <div class="chart-song">Super Shy</div>
-          <div class="chart-artist">NewJeans</div>
+
+  <div class="section-title fade-up"><span>🔥</span> 本週 K-pop 熱門排行榜</div>
+  
+  <div class="top-3-grid fade-up" id="top3Container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px;"></div>
+
+  <div id="indexSongList" class="fade-up"></div>
+
+</div>
+
+<script>
+// 數據來源：與 songs.html 保持一致
+const songsData = [
+  { title: 'BOOMPALA', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=Gnn4GRSzRXI' },
+  { title: 'Heavy Serenade', artist: 'NMIXX', url: 'https://youtu.be/6Ycn9qZK09I' },
+  { title: 'It’s Me', artist: 'ILLIT', url: 'https://youtu.be/lOpdrEgmYzY' },
+  { title: 'SPAGHETTI', artist: 'LE SSERAFIM', url: 'https://youtu.be/TvVtYaqCni8' },
+  { title: 'HOT', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=r9AEGPB6qIU' }
+];
+
+function renderHome() {
+  const top3 = document.getElementById('top3Container');
+  const list = document.getElementById('indexSongList');
+  const medals = ['🥇', '🥈', '🥉'];
+  
+  // 渲染 TOP 3
+  songsData.slice(0, 3).forEach((song, i) => {
+    top3.innerHTML += `
+      <div class="card" style="padding:20px; text-align:center; cursor:pointer;" onclick="location.href='songs.html'">
+        <div style="font-size: 24px;">${medals[i]}</div>
+        <strong>${song.title}</strong>
+      </div>`;
+  });
+
+  // 渲染其餘歌曲 (保持原有的 list-item 樣式)
+  songsData.slice(3).forEach((song, i) => {
+    list.innerHTML += `
+      <div class="song-list-item fade-up" style="padding:15px; background:var(--surface); border-radius:12px; margin-bottom:10px; cursor:pointer; display:flex; align-items:center;" onclick="location.href='songs.html'">
+        <div style="margin-right:15px; color:#ff4757; font-weight:bold;">#${i + 4}</div>
+        <div class="song-info">
+          <strong>${song.title}</strong><br><small style="color:var(--text2);">${song.artist}</small>
         </div>
-        <span class="chart-badge">🔥 HOT</span>
-      </div>
- 
-      <div class="chart-item" onclick="location.href='songs.html'">
-        <div class="chart-rank top">2</div>
-        <div class="chart-info">
-          <div class="chart-song">SPAGHETTI (feat. j-hope)</div>
-          <div class="chart-artist">LE SSERAFIM</div>
-        </div>
-        <span class="chart-badge">🆕 NEW</span>
-      </div>
- 
-      <div class="chart-item" onclick="location.href='songs.html'">
-        <div class="chart-rank top">3</div>
-        <div class="chart-info">
-          <div class="chart-song">Blue Valentine</div>
-          <div class="chart-artist">NMIXX</div>
-        </div>
-      </div>
- 
-      <div class="chart-item">
-        <div class="chart-rank">4</div>
-        <div class="chart-info">
-          <div class="chart-song">THIS IS FOR</div>
-          <div class="chart-artist">TWICE</div>
-        </div>
-      </div>
- 
-      <div class="chart-item">
-        <div class="chart-rank">5</div>
-        <div class="chart-info">
-          <div class="chart-song">Rich Man</div>
-          <div class="chart-artist">aespa</div>
-        </div>
-      </div>
- 
-    </div>
-  </div>
- 
-  <!-- ── 主推女團 ── -->
-  <div class="section-title fade-up"><span>✨</span> 主推女團</div>
-  <div class="idols-grid">
- 
-    <div class="card idol-card fade-up">
-      <img src="images/lesf.jpg" alt="LE SSERAFIM" onerror="this.style.display='none'" />
-      <h3>LE SSERAFIM</h3>
-      <p>I'm Fearless 🔥 打造新世代強勢女子團體</p>
-      <a href="idols.html" class="btn-sm">看更多 →</a>
-    </div>
- 
-    <div class="card idol-card fade-up">
-      <img src="images/njz.jpg" alt="NewJeans" onerror="this.style.display='none'" />
-      <h3>NewJeans</h3>
-      <p>高人氣青春風格，連結潮流文化 💙</p>
-      <a href="idols.html" class="btn-sm">看更多 →</a>
-    </div>
- 
-    <div class="card idol-card fade-up">
-      <img src="images/aespa.jpg" alt="aespa" onerror="this.style.display='none'" />
-      <h3>aespa</h3>
-      <p>現實 × 虛擬世界的獨特設定 🌐</p>
-      <a href="idols.html" class="btn-sm">看更多 →</a>
-    </div>
- 
-  </div>
- 
-  <!-- ── 站內專區 ── -->
-  <div class="section-title fade-up"><span>➜</span> 站內專區</div>
-  <div class="zone-grid">
-    <div class="card zone-card fade-up" onclick="location.href='songs.html'">
-      <div class="icon">🎵</div>
-      <h3>推薦歌曲</h3>
-      <p>同步歌詞 · MV 播放 · 搜尋收藏</p>
-    </div>
-    <div class="card zone-card fade-up" onclick="location.href='idols.html'">
-      <div class="icon">🌟</div>
-      <h3>偶像介紹</h3>
-      <p>女團資料 · 作品年表</p>
-    </div>
-  </div>
- 
-</div><!-- /container -->
- 
-<footer>© 2025 K-pop 專題小組｜Weverse 風格升級版</footer>
- 
+      </div>`;
+  });
+}
+
+renderHome();
+</script>
 <script src="script.js"></script>
 </body>
 </html>
