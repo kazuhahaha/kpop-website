@@ -728,3 +728,38 @@ body.dark .disc-tag .year { color: var(--accent2); }
   .hero h1 { font-size: 36px; }
   .container { padding: 0 14px; }
 }
+/* ── 手機版 Nav 優化修復 ── */
+@media (max-width: 480px) {
+  nav {
+    padding: 0 10px !important;
+    height: auto !important; /* 讓導覽列高度自動調整 */
+    flex-wrap: wrap;       /* 允許內容換行 */
+    justify-content: center !important;
+    gap: 10px;
+  }
+
+  .nav-logo {
+    font-size: 16px !important;
+    margin: 5px 0;
+  }
+
+  .nav-links {
+    gap: 4px !important;
+  }
+
+  .nav-links a {
+    padding: 6px 8px !important;
+    font-size: 12px !important;
+  }
+  
+  .nav-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  /* 修正排行榜卡片在手機上的擠壓 */
+  .top-3-grid {
+    gap: 8px !important;
+  }
+}
