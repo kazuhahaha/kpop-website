@@ -2,96 +2,130 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🎵 推薦歌曲 - K-pop 音樂站</title>
-  <style>
-    /* 簡易樣式，維持您的風格 */
-    body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
-    .container { max-width: 800px; margin: auto; }
-    .card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .song-list-item { padding: 15px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.3s; }
-    .song-list-item:hover { background: #f9f9f9; }
-    .nav-links a { margin-right: 15px; text-decoration: none; color: #333; }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
 <nav>
+  <span class="nav-logo">🎵 K-pop 音樂站</span>
   <div class="nav-links">
     <a href="index.html">首頁</a>
-    <a href="songs.html" style="font-weight:bold;">推薦歌曲</a>
+    <a href="songs.html" class="active">推薦歌曲</a>
     <a href="idols.html">偶像介紹</a>
+  </div>
+  <div class="nav-right">
+    <button id="darkToggle">🌙 Dark</button>
   </div>
 </nav>
 
-<div class="container">
-  <h2>🎵 推薦歌曲</h2>
-  
-  <div class="card" style="text-align:center;">
-    <h3>▶ 目前選擇</h3>
-    <div id="npTitle" style="font-size: 20px; margin: 15px 0; font-weight: bold;">請點選下方歌曲</div>
-    <a id="ytLink" href="#" target="_blank" style="display:none; padding: 12px 25px; background: #ff0000; color: white; text-decoration: none; border-radius: 8px;">
-      📺 前往 YouTube 觀看
-    </a>
+<div class="container page">
+
+  <div class="section-title fade-up"><span>🎵</span> 推薦歌曲</div>
+
+  <div class="search-bar fade-up">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜尋歌曲或團體名稱..." oninput="filterSongs()" />
   </div>
 
-  <div class="card">
-    <h3>歌曲列表</h3>
-    <div id="songList"></div>
+  <div class="favs-section fade-up" id="favsSection">
+    <div class="section-title" style="margin-bottom:12px;"><span>⭐</span> 我的收藏歌曲</div>
+    <div class="card" id="favsContainer">
+      <div class="fav-empty" id="favEmpty">還沒有收藏歌曲，點擊 ❤️ 加入收藏！</div>
+    </div>
   </div>
+
+  <div class="player-layout fade-up">
+    <div class="card mv-player-card" style="text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
+      <div class="now-playing-info">
+        <div class="now-playing-label">▶ NOW PLAYING</div>
+        <div class="now-playing-title" id="npTitle">請從下方選擇一首歌曲</div>
+        <div class="now-playing-artist" id="npArtist">-</div>
+      </div>
+      <a id="ytBtn" href="#" target="_blank" class="fav-btn" style="display: none; margin: 20px auto; padding: 10px 20px; text-decoration: none; background: #ff0000; color: white; border-radius: 20px; font-weight: bold;">
+        📺 前往 YouTube 觀看
+      </a>
+    </div>
+  </div>
+
+  <div class="section-title fade-up"><span>🔥</span> 歌曲列表</div>
+  <div id="songList" style="margin-bottom:40px;"></div>
+
 </div>
+
+<footer>© 2025 K-pop 專題小組｜Weverse 風格升級版</footer>
 
 <script>
 const songsData = [
-  { title: 'BOOMPALA', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=Gnn4GRSzRXI' },
-  { title: 'Heavy Serenade', artist: 'NMIXX', url: 'https://youtu.be/6Ycn9qZK09I' },
-  { title: 'It’s Me', artist: 'ILLIT', url: 'https://youtu.be/lOpdrEgmYzY' },
-  { title: 'SPAGHETTI', artist: 'LE SSERAFIM', url: 'https://youtu.be/TvVtYaqCni8' },
-  { title: 'HOT', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=r9AEGPB6qIU' },
-  { title: 'CRAZY', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=n6B5gQXlB-0' },
-  { title: 'EASY', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=qEW5IPfGLUI' },
-  { title: 'Perfect Night', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=hLvWy2b857I' },
-  { title: 'Eve, Psyche & the Bluebeard’s wife', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=dZs_cLHfnNA' },
-  { title: 'UNFORGIVEN', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=UBURTj20HXI' },
-  { title: 'FEARLESS', artist: 'LE SSERAFIM', url: 'https://youtu.be/4vbDFu0PUew' },
-  { title: 'Black Mamba', artist: 'aespa', url: 'https://youtu.be/ZeerrnuLi5E' },
-  { title: 'Next Level', artist: 'aespa', url: 'https://youtu.be/4TWR90KJl84' },
-  { title: 'Savage', artist: 'aespa', url: 'https://youtu.be/WPdWvnAAurg' },
-  { title: 'Girls', artist: 'aespa', url: 'https://youtu.be/dYRITmpFbJ4' },
-  { title: 'Spicy', artist: 'aespa', url: 'https://youtu.be/Os_heh8vPfs' },
-  { title: 'Drama', artist: 'aespa', url: 'https://youtu.be/D8VEhcPeSlc' },
-  { title: 'Supernova', artist: 'aespa', url: 'https://youtu.be/phuiiNCxRMg' },
-  { title: 'Whiplash', artist: 'aespa', url: 'https://youtu.be/jWQx2f-CErU' },
-  { title: 'Dirty Work', artist: 'aespa', url: 'https://youtu.be/M2WTUoy4y6E' },
-  { title: 'Rich Man', artist: 'aespa', url: 'https://youtu.be/5oQVTnq-UKk' },
-  { title: 'Attention', artist: 'NewJeans', url: 'https://youtu.be/js1CtxSY38I' },
-  { title: 'Hype Boy', artist: 'NewJeans', url: 'https://youtu.be/11cta61wi0g' },
-  { title: 'Cookie', artist: 'NewJeans', url: 'https://youtu.be/VOmIplFAGeg' },
-  { title: 'Ditto', artist: 'NewJeans', url: 'https://youtu.be/Km71Rr9K-Bw' },
-  { title: 'OMG', artist: 'NewJeans', url: 'https://youtu.be/sVTy_wmn5SU' },
-  { title: 'Super Shy', artist: 'NewJeans', url: 'https://youtu.be/ArmDp-zijuc' },
-  { title: 'ETA', artist: 'NewJeans', url: 'https://youtu.be/jOTfBlKSQYY' },
-  { title: 'How Sweet', artist: 'NewJeans', url: 'https://youtu.be/Q3K0TOvTOno' }
+  { id: 1, title: 'BOOMPALA', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=Gnn4GRSzRXI' },
+  { id: 2, title: 'Heavy Serenade', artist: 'NMIXX', url: 'https://youtu.be/6Ycn9qZK09I' },
+  { id: 3, title: 'It’s Me', artist: 'ILLIT', url: 'https://youtu.be/lOpdrEgmYzY' },
+  { id: 4, title: 'SPAGHETTI', artist: 'LE SSERAFIM', url: 'https://youtu.be/TvVtYaqCni8' },
+  { id: 5, title: 'HOT', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=r9AEGPB6qIU' },
+  { id: 6, title: 'CRAZY', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=n6B5gQXlB-0' },
+  { id: 7, title: 'EASY', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=qEW5IPfGLUI' },
+  { id: 8, title: 'Perfect Night', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=hLvWy2b857I' },
+  { id: 9, title: 'Eve, Psyche & the Bluebeard’s wife', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=dZs_cLHfnNA' },
+  { id: 10, title: 'UNFORGIVEN', artist: 'LE SSERAFIM', url: 'https://www.youtube.com/watch?v=UBURTj20HXI' },
+  { id: 11, title: 'FEARLESS', artist: 'LE SSERAFIM', url: 'https://youtu.be/4vbDFu0PUew' },
+  { id: 12, title: 'Black Mamba', artist: 'aespa', url: 'https://youtu.be/ZeerrnuLi5E' },
+  { id: 13, title: 'Next Level', artist: 'aespa', url: 'https://youtu.be/4TWR90KJl84' },
+  { id: 14, title: 'Savage', artist: 'aespa', url: 'https://youtu.be/WPdWvnAAurg' },
+  { id: 15, title: 'Girls', artist: 'aespa', url: 'https://youtu.be/dYRITmpFbJ4' },
+  { id: 16, title: 'Spicy', artist: 'aespa', url: 'https://youtu.be/Os_heh8vPfs' },
+  { id: 17, title: 'Drama', artist: 'aespa', url: 'https://youtu.be/D8VEhcPeSlc' },
+  { id: 18, title: 'Supernova', artist: 'aespa', url: 'https://youtu.be/phuiiNCxRMg' },
+  { id: 19, title: 'Whiplash', artist: 'aespa', url: 'https://youtu.be/jWQx2f-CErU' },
+  { id: 20, title: 'Dirty Work', artist: 'aespa', url: 'https://youtu.be/M2WTUoy4y6E' },
+  { id: 21, title: 'Rich Man', artist: 'aespa', url: 'https://youtu.be/5oQVTnq-UKk' },
+  { id: 22, title: 'Attention', artist: 'NewJeans', url: 'https://youtu.be/js1CtxSY38I' },
+  { id: 23, title: 'Hype Boy', artist: 'NewJeans', url: 'https://youtu.be/11cta61wi0g' },
+  { id: 24, title: 'Cookie', artist: 'NewJeans', url: 'https://youtu.be/VOmIplFAGeg' },
+  { id: 25, title: 'Ditto', artist: 'NewJeans', url: 'https://youtu.be/Km71Rr9K-Bw' },
+  { id: 26, title: 'OMG', artist: 'NewJeans', url: 'https://youtu.be/sVTy_wmn5SU' },
+  { id: 27, title: 'Super Shy', artist: 'NewJeans', url: 'https://youtu.be/ArmDp-zijuc' },
+  { id: 28, title: 'ETA', artist: 'NewJeans', url: 'https://youtu.be/jOTfBlKSQYY' },
+  { id: 29, title: 'How Sweet', artist: 'NewJeans', url: 'https://youtu.be/Q3K0TOvTOno' }
 ];
 
-function loadSong(idx) {
-  const song = songsData[idx];
-  document.getElementById('npTitle').textContent = `${song.title} - ${song.artist}`;
-  const btn = document.getElementById('ytLink');
-  btn.href = song.url;
-  btn.style.display = 'inline-block';
-}
-
-function renderList() {
+function renderSongList(list) {
   const container = document.getElementById('songList');
-  songsData.forEach((song, idx) => {
-    const div = document.createElement('div');
-    div.className = 'song-list-item';
-    div.innerHTML = `<strong>${song.title}</strong> - <small>${song.artist}</small>`;
-    div.onclick = () => loadSong(idx);
-    container.appendChild(div);
+  container.innerHTML = '';
+  list.forEach((song) => {
+    const item = document.createElement('div');
+    item.className = 'song-list-item fade-up';
+    item.innerHTML = `
+      <div class="song-info">
+        <div class="song-name">${song.title}</div>
+        <div class="song-artist">${song.artist}</div>
+      </div>
+    `;
+    item.onclick = () => {
+      document.getElementById('npTitle').textContent = song.title;
+      document.getElementById('npArtist').textContent = song.artist;
+      const btn = document.getElementById('ytBtn');
+      btn.href = song.url;
+      btn.style.display = 'inline-block';
+    };
+    container.appendChild(item);
   });
 }
 
-renderList();
+function filterSongs() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = songsData.filter(s => s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q));
+  renderSongList(filtered);
+}
+
+// Dark Mode 與其他初始化邏輯保持不變
+document.getElementById('darkToggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('kpop_dark', document.body.classList.contains('dark'));
+});
+
+if(localStorage.getItem('kpop_dark') === 'true') document.body.classList.add('dark');
+renderSongList(songsData);
 </script>
 </body>
 </html>
